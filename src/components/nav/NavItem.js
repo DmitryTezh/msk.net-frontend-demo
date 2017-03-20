@@ -3,6 +3,7 @@
  */
 import React, { PropTypes } from 'react';
 import { NavLink } from 'react-router-dom';
+import omit from 'lodash/omit';
 
 export const NavItem = ({
     to,
@@ -13,7 +14,7 @@ export const NavItem = ({
     ...props
 }) => (
     <li>
-        <NavLink {...{ to, activeStyle, activeClassName, exact, ...props }}>
+        <NavLink {...{ to, activeStyle, activeClassName, exact, ...omit(props, ['active','activeKey','activeHref']) }}>
             {children}
         </NavLink>
     </li>
