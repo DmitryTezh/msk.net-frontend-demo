@@ -4,10 +4,10 @@ import { bindActionCreators } from 'redux';
 import * as actions from '../actions/auth';
 import MenuBar from '../components/nav/MenuBar';
 import Routing from './Routing';
-import './App.css';
+//import './App.css';
 
 const App = (props) => (
-    <div className="App">
+    <div>
         <MenuBar {...{...props.auth, actions: props.actions }}/>
         <Routing/>
     </div>

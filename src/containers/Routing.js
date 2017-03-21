@@ -9,7 +9,7 @@ import SignUpForm from '../components/auth/SignUpForm';
 import SignOutForm from '../components/auth/SignOutForm';
 
 const Routing = (props) => (
-    <div>
+    <div className="container">
         <Route exact path="/" component={HomePage}/>
         <Route path="/signin" component={SignInForm}/>
         <Route path="/signup" component={SignUpForm}/>

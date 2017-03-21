@@ -7,7 +7,7 @@ import omit from 'lodash/omit';
 
 export const NavItem = ({
     to,
-    activeStyle = {fontWeight: "bold", color: "red"},
+    activeStyle = { fontWeight: "bold", color: "red" },
     activeClassName,
     exact = false,
     children,
