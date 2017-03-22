@@ -29,7 +29,7 @@ NavItem.propTypes = {
 };
 
 export const NavIndex = (props) => (
-    <NavItem exact {...props} />
+    <NavItem exact {...props}/>
 );
 
 NavIndex.propTypes = NavItem.propTypes;

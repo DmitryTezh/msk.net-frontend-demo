@@ -4,7 +4,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form'
 import { Form, FormGroup, FormControl, ControlLabel, HelpBlock } from 'react-bootstrap';
-import { Col, Glyphicon, Button } from 'react-bootstrap';
+import { Panel, Col, Glyphicon, Button } from 'react-bootstrap';
 import HelpPopover from '../common/HelpPopover';
 
 const validate = values => {
@@ -73,6 +73,7 @@ const renderField = ({ input, name, label, type, help, meta: { touched, error, w
         </Col>
         <Col componentClass={HelpBlock} sm={4}>
             {help && <HelpPopover title={label} text={help}/>}
+            {' '}
             {touched && (error || warning)}
         </Col>
     </FormGroup>
@@ -81,20 +82,24 @@ const renderField = ({ input, name, label, type, help, meta: { touched, error, w
 const SignUpForm = (props) => {
     const { handleSubmit, pristine, reset, submitting } = props;
     return (
-        <Form horizontal onSubmit={handleSubmit}>
-            <Field name="email" type="email" component={renderField} label="Email"/>
-            <Field name="nickName" type="text" component={renderField} label="Nick name"
-                   help="This is your nick name, it should at least 5 chars."/>
-            <Field name="password" type="password" component={renderField} label="Password"/>
-            <Field name="confirmPassword" type="password" component={renderField} label="Confirm password"/>
-            <FormGroup>
-                <Col smOffset={2} sm={4}>
-                    <Button type="submit" disabled={submitting} bsStyle="primary">Submit</Button>
-                    {' '}
-                    <Button type="button" disabled={pristine || submitting} onClick={reset}>Clear</Button>
-                </Col>
-            </FormGroup>
-        </Form>
+        <Panel header="Sign Up" bsStyle="primary">
+            <Form horizontal onSubmit={handleSubmit}>
+                <Field name="email" type="email" component={renderField} label="Email"
+                       help="This is your email, it will be your login to portal."/>
+                <Field name="nickName" type="text" component={renderField} label="Nick name"
+                       help="This is your nick name, it should be at least 5 chars."/>
+                <Field name="password" type="password" component={renderField} label="Password"
+                       help="This is your password, it should be at least 8 chars, contains digits, upper and lower letters and special symbols."/>
+                <Field name="confirmPassword" type="password" component={renderField} label="Confirm password"/>
+                <FormGroup>
+                    <Col smOffset={2} sm={4}>
+                        <Button type="submit" disabled={submitting} bsStyle="primary">Sign Up</Button>
+                        {' '}
+                        <Button type="button" disabled={pristine || submitting} onClick={reset}>Clear</Button>
+                    </Col>
+                </FormGroup>
+            </Form>
+        </Panel>
     );
 };
 

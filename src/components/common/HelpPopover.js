@@ -10,8 +10,8 @@ const popoverHoverFocus = (title, text) => (
     </Popover>
 );
 
-const HelpPopover = (title, text) => (
-    <OverlayTrigger trigger={['hover', 'focus']} placement="right" overlay={popoverHoverFocus("title", "text")}>
+const HelpPopover = ({ title, text} ) => (
+    <OverlayTrigger trigger={['hover', 'focus']} placement="right" overlay={popoverHoverFocus(title, text)}>
         <Glyphicon glyph="info-sign"/>
     </OverlayTrigger>
 );

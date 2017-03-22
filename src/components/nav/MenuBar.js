@@ -9,11 +9,11 @@ import { Nav, Navbar, FormGroup, FormControl, Button } from 'react-bootstrap';
 const SignInForm = () => (
     <Navbar.Form pullRight>
         <FormGroup bsSize="small">
-            <FormControl type="text" placeholder="Email" />
+            <FormControl type="text" placeholder="Email"/>
             {' '}
-            <FormControl type="text" placeholder="Password" />
+            <FormControl type="text" placeholder="Password"/>
             {' '}
-            <Button type="submit">Sign In</Button>
+            <Button type="submit" bsStyle="primary">Sign In</Button>
         </FormGroup>
     </Navbar.Form>
 );
