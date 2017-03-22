@@ -3,7 +3,9 @@
  */
 import React from 'react';
 import { Field, reduxForm } from 'redux-form'
-import { Form, FormGroup, FormControl, ControlLabel, HelpBlock, Col, Glyphicon, Button } from 'react-bootstrap';
+import { Form, FormGroup, FormControl, ControlLabel, HelpBlock } from 'react-bootstrap';
+import { Col, Glyphicon, Button } from 'react-bootstrap';
+import HelpPopover from '../common/HelpPopover';
 
 const validate = values => {
     const errors = {};
@@ -16,15 +18,20 @@ const validate = values => {
 
     if (!values.nickName || !values.nickName.trim()) {
         errors.nickName = 'Nick name required';
+    } else if (values.nickName.trim().length < 5) {
+        errors.nickName = 'Nick name should be at least 5 chars';
     }
 
     if (!values.password || !values.password.trim()) {
         errors.password = 'Password required';
+    } else if (values.password.trim().length < 8) {
+        errors.password = 'Password should be at least 8 chars';
     }
+
     if (!values.confirmPassword || !values.confirmPassword.trim()) {
         errors.confirmPassword = 'Password should be confirmed';
     }
-    if (values.password !== values.confirmPassword) {
+    if (values.confirmPassword !== values.password) {
         errors.confirmPassword = 'Password not matched';
     }
 
@@ -34,6 +41,7 @@ const validate = values => {
 const warn = values => {
     const warnings = {};
 
+    // eslint-disable-next-line
     if (!/^(?=^[!@#$%\^&*()_\-+=\[{\]};:<>|\./?a-zA-Z\d]{8,}$)(?=([!@#$%\^&*()_\-+=\[{\]};:<>|\./?a-zA-Z\d]*\W+){1,})[!@#$%\^&*()_\-+=\[{\]};:<>|\./?a-zA-Z\d]*$$/i.test(values.password)) {
         warnings.password = 'Weak password';
     }
@@ -54,16 +62,17 @@ const getValidationState = (touched, error, warning) => {
     return null;
 };
 
-const renderField = ({ input, name, label, type, meta: { touched, error, warning } }) => (
+const renderField = ({ input, name, label, type, help, meta: { touched, error, warning } }) => (
     <FormGroup controlId={name} validationState={getValidationState(touched, error, warning)}>
         <Col componentClass={ControlLabel} sm={2}>
            <Glyphicon glyph="asterisk" className="text-danger"/>{' '}{label}
         </Col>
         <Col sm={4}>
-            <FormControl {...input} placeholder={label} type={type} />
+            <FormControl {...input} placeholder={label} type={type}/>
             <FormControl.Feedback/>
         </Col>
-        <Col componentClass={HelpBlock} sm={2}>
+        <Col componentClass={HelpBlock} sm={4}>
+            {help && <HelpPopover title={label} text={help}/>}
             {touched && (error || warning)}
         </Col>
     </FormGroup>
@@ -72,9 +81,10 @@ const renderField = ({ input, name, label, type, meta: { touched, error, warning
 const SignUpForm = (props) => {
     const { handleSubmit, pristine, reset, submitting } = props;
     return (
-        <Form horizontal onSubmit={handleSubmit} className="container">
+        <Form horizontal onSubmit={handleSubmit}>
             <Field name="email" type="email" component={renderField} label="Email"/>
-            <Field name="nickName" type="text" component={renderField} label="Nick name"/>
+            <Field name="nickName" type="text" component={renderField} label="Nick name"
+                   help="This is your nick name, it should at least 5 chars."/>
             <Field name="password" type="password" component={renderField} label="Password"/>
             <Field name="confirmPassword" type="password" component={renderField} label="Confirm password"/>
             <FormGroup>
@@ -90,6 +100,7 @@ const SignUpForm = (props) => {
 
 export default reduxForm({
     form: 'signUp',
+    touchOnChange: true,
     validate,
     warn
 })(SignUpForm);
