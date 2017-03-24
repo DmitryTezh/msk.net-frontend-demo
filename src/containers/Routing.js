@@ -4,9 +4,9 @@
 import React from 'react';
 import { Route } from 'react-router'
 import HomePage from '../components/HomePage';
-import SignInForm from '../components/auth/SignInForm';
-import SignUpForm from '../components/auth/SignUpForm';
-import SignOutForm from '../components/auth/SignOutForm';
+import SignInForm from '../forms/auth/SignInForm';
+import SignUpForm from '../forms/auth/SignUpForm';
+import SignOutForm from '../forms/auth/SignOutForm';
 
 const Routing = (props) => (
     <div className="container">

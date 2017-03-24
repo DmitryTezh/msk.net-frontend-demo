@@ -4,21 +4,29 @@
 import React, { PropTypes } from 'react';
 import { OverlayTrigger, Popover, Glyphicon } from 'react-bootstrap';
 
-const popoverHoverFocus = (title, text) => (
-    <Popover id="popover-trigger-hover-focus" title={title}>
+const renderPopover = (title, text) => (
+    <Popover id={`${title}-popover-trigger`} title={title}>
         {text}
     </Popover>
 );
 
-const HelpPopover = ({ title, text} ) => (
-    <OverlayTrigger trigger={['hover', 'focus']} placement="right" overlay={popoverHoverFocus(title, text)}>
+export const IconPopover = ({ title, text} ) => (
+    <OverlayTrigger trigger={['hover', 'focus']} placement="right" overlay={renderPopover(title, text)}>
         <Glyphicon glyph="info-sign"/>
     </OverlayTrigger>
 );
-
-HelpPopover.propTypes = {
+IconPopover.propTypes = {
     title: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired
 };
 
-export default HelpPopover;
+export const InputPopover = ({ title, text, children} ) => (
+    <OverlayTrigger trigger="focus" placement="left" overlay={renderPopover(title, text)}>
+        {children}
+    </OverlayTrigger>
+);
+InputPopover.propTypes = {
+    title: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
+    children: PropTypes.node.isRequired
+};

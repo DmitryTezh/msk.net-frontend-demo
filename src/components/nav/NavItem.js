@@ -19,7 +19,6 @@ export const NavItem = ({
         </NavLink>
     </li>
 );
-
 NavItem.propTypes = {
     to: PropTypes.string.isRequired,
     activeStyle: PropTypes.object,
@@ -31,5 +30,4 @@ NavItem.propTypes = {
 export const NavIndex = (props) => (
     <NavItem exact {...props}/>
 );
-
 NavIndex.propTypes = NavItem.propTypes;
