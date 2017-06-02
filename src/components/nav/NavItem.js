@@ -1,7 +1,8 @@
 /**
  * Created by DIMOS on 19.03.2017.
  */
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import omit from 'lodash/omit';
 

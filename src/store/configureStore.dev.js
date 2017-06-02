@@ -5,8 +5,8 @@ import { createStore, applyMiddleware } from 'redux';
 import { routerMiddleware } from 'react-router-redux';
 import { composeWithDevTools } from 'redux-devtools-extension/logOnlyInProduction';
 import { persistState } from 'redux-devtools';
-import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
+import thunk from 'redux-thunk';
 import reducers from '../reducers';
 import fetchApi from '../middlewares/fetchApi';
 

@@ -1,0 +1,53 @@
+html, body {
+    background-color: darkgrey;
+}
+
+.app-logo {
+    animation: app-logo-spin infinite 20s linear;
+    height: 400px;
+}
+
+.app-header {
+    height: 600px;
+    padding: 20px;
+    text-align: center;
+}
+
+.brand-icon {
+    margin-top: -30px;
+}
+
+@keyframes app-logo-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.panel {
+    background-color: inherit;
+    border-color: transparent;
+}
+
+.panel-body {
+    border-radius: 5px;
+    background-color: rgba(255,255,255,0.8);
+}
+
+.form-control, .rw-widget, .rw-input {
+    background-color: #eee;
+}
+
+.vertical-middle {
+    vertical-align: middle !important;
+}
+
+.up-margin-top {
+    margin-top: -30px;
+}
+
+.no-margin-top {
+    margin-top: -15px;
+}
+
+.no-margin-bottom {
+    margin-bottom: 0;
+}

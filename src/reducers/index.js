@@ -2,14 +2,17 @@
  * Created by DIMOS on 18.03.2017.
  */
 import { combineReducers } from 'redux';
-import { reducer as formReducer } from 'redux-form';
 import { routerReducer } from 'react-router-redux';
-import authReducer from './auth';
+import { reducer as formReducer } from 'redux-form';
+import todoReducer from './todoReducer';
+import filterReducer from './filterReducer';
 
 const reducers = combineReducers({
-    auth: authReducer,
+    router: routerReducer,
     form: formReducer,
-    router: routerReducer
+
+    todo: todoReducer,
+    filter: filterReducer
 });
 
 export default reducers;

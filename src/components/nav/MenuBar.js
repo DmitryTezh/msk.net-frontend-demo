@@ -1,57 +1,44 @@
 /**
  * Created by DIMOS on 18.03.2017.
  */
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { NavItem, NavIndex } from './NavItem';
-import { Nav, Navbar, FormGroup, FormControl, Button } from 'react-bootstrap';
-//import logo from '../../logo.svg';
+import { Nav, Navbar, Glyphicon } from 'react-bootstrap';
+import { FormGroup, FormControl, Col } from 'react-bootstrap';
 
-const SignInForm = () => (
-    <Navbar.Form pullRight>
-        <FormGroup bsSize="small">
-            <FormControl type="text" placeholder="Email"/>
-            {' '}
-            <FormControl type="text" placeholder="Password"/>
-            {' '}
-            <Button type="submit" bsStyle="primary">Sign In</Button>
+const SearchForm = (props) => (
+    <Navbar.Form>
+        <FormGroup validationState="success">
+            <FormControl type="text" placeholder="Search"/>
+            <FormControl.Feedback>
+                <Glyphicon glyph="search"/>
+            </FormControl.Feedback>
         </FormGroup>
     </Navbar.Form>
 );
 
-const SignInUser = (user) => (
-    <Nav pullRight>
-        <Navbar.Text>Wellcome, {user.nickname}!</Navbar.Text>
-        {' '}
-        <NavItem to="/signout">Sign Out</NavItem>
-    </Nav>
-);
-
-const MenuBar = ({ isAuthenticated, user, actions }) => (
+const MenuBar = (props) => (
     <Navbar inverse collapseOnSelect>
         <Navbar.Header>
             <Navbar.Brand>
-                {'Guild Mastery'}
+                <div className="brand-icon">
+                    <h1><Glyphicon glyph="check"/> MSK.NET</h1>
+                </div>
             </Navbar.Brand>
             <Navbar.Toggle/>
         </Navbar.Header>
         <Navbar.Collapse>
             <Nav>
                 <NavIndex to="/">Home</NavIndex>
-                <NavItem to="/signup">Sign Up</NavItem>
+                <NavItem to="/todo">Todo</NavItem>
             </Nav>
-            { !isAuthenticated && <SignInForm/> }
-            { isAuthenticated && <SignInUser user={user}/> }
+            <Col smHidden xsHidden>
+                <Nav pullRight>
+                    <SearchForm/>
+                </Nav>
+            </Col>
         </Navbar.Collapse>
     </Navbar>
 );
-
-MenuBar.propTypes = {
-    isAuthenticated: PropTypes.bool.isRequired,
-    user: PropTypes.shape({
-        email: PropTypes.string.isRequired,
-        nickname: PropTypes.string.isRequired
-    }),
-    actions: PropTypes.objectOf(PropTypes.func.isRequired).isRequired
-};
 
 export default MenuBar;
